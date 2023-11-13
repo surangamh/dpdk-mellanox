@@ -1,3 +1,9 @@
+#!/usr/bin/env bash
+#
+# (C) Copyright 2019, Xilinx, Inc.
+#
+#!/usr/bin/env bash
+
 install_mlnx_drivers() {
     sudo /proj/octfpga-PG0/tools/Mellanox/MLNX_OFED_LINUX-5.8-3.0.7.0-ubuntu20.04-x86_64/mlnxofedinstall --dpdk --force
     sudo /proj/octfpga-PG0/tools/Mellanox/mlnx-en-5.8-3.0.7.0-ubuntu20.04-x86_64/install --dpdk --force
