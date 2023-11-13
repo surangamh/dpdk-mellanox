@@ -5,8 +5,8 @@
 #!/usr/bin/env bash
 
 install_dpdk() {
-    cp /proj/octfpga-PG0/tools/Mellanox/dpdk.sh ~
-    ~/dpdk.sh
+    cp /proj/octfpga-PG0/tools/Mellanox/dpdk.sh /tmp
+    /tmp/dpdk.sh
 }
 install_mlnx_drivers() {
     sudo /proj/octfpga-PG0/tools/Mellanox/MLNX_OFED_LINUX-5.8-3.0.7.0-ubuntu20.04-x86_64/mlnxofedinstall --dpdk --force
