@@ -166,8 +166,9 @@ detect_cards
 install_xrt
 install_shellpkg
 verify_install
-install_dpdk
 install_mlnx_drivers
+install_dpdk
+
     
 if [ $? == 0 ] ; then
     echo "XRT and shell package installation successful."
