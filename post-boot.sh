@@ -166,7 +166,20 @@ install_xrt
 install_shellpkg
 verify_install
 install_mlnx_drivers
-
+    
+if [ $? == 0 ] ; then
+    echo "XRT and shell package installation successful."
+else
+    echo "XRT and/or shell package installation failed."
+    exit 1
+fi
+    
+if check_requested_shell ; then
+    echo "FPGA shell verified."
+else
+    echo "FPGA shell could not be verified."
+    exit 1
+fi
 SCRIPTNAME=$0
 #
 GENIUSER=`geni-get user_urn | awk -F+ '{print $4}'`
@@ -185,19 +198,5 @@ echo "$HOMEDIR"
 #install_dpdk
 cp /proj/octfpga-PG0/tools/Mellanox/dpdk.sh $HOMEDIR
 sudo -u $USER $HOMEDIR/dpdk.sh
-    
-if [ $? == 0 ] ; then
-    echo "XRT and shell package installation successful."
-else
-    echo "XRT and/or shell package installation failed."
-    exit 1
-fi
-    
-if check_requested_shell ; then
-    echo "FPGA shell verified."
-else
-    echo "FPGA shell could not be verified."
-    exit 1
-fi
 echo "Done running startup script."
 exit 0
