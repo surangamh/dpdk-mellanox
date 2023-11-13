@@ -4,6 +4,10 @@
 #
 #!/usr/bin/env bash
 
+install_dpdk() {
+    cp /proj/octfpga-PG0/tools/Mellanox/dpdk.sh ~
+    ~/dpdk.sh
+}
 install_mlnx_drivers() {
     sudo /proj/octfpga-PG0/tools/Mellanox/MLNX_OFED_LINUX-5.8-3.0.7.0-ubuntu20.04-x86_64/mlnxofedinstall --dpdk --force
     sudo /proj/octfpga-PG0/tools/Mellanox/mlnx-en-5.8-3.0.7.0-ubuntu20.04-x86_64/install --dpdk --force
@@ -162,6 +166,7 @@ detect_cards
 install_xrt
 install_shellpkg
 verify_install
+install_dpdk
 install_mlnx_drivers
     
 if [ $? == 0 ] ; then
