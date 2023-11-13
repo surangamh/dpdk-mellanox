@@ -161,6 +161,12 @@ PACKAGE_VERSION=`grep ^$COMB: $SCRIPT_PATH/spec.txt | awk -F':' '{print $2}' | a
 XRT_VERSION=`grep ^$COMB: $SCRIPT_PATH/spec.txt | awk -F':' '{print $2}' | awk -F';' '{print $7}' | awk -F= '{print $2}'`
 FACTORY_SHELL="xilinx_u280_GOLDEN_8"
 
+detect_cards
+install_xrt
+install_shellpkg
+verify_install
+install_mlnx_drivers
+
 SCRIPTNAME=$0
 #
 GENIUSER=`geni-get user_urn | awk -F+ '{print $4}'`
@@ -176,14 +182,8 @@ echo "Home directory:"
 HOMEDIR="/users/$USER"
 echo "$HOMEDIR"
 
-
-detect_cards
-install_xrt
-install_shellpkg
-verify_install
-install_mlnx_drivers
-install_dpdk
-
+#install_dpdk
+cp /proj/octfpga-PG0/tools/Mellanox/dpdk.sh $HOMEDIR
     
 if [ $? == 0 ] ; then
     echo "XRT and shell package installation successful."
