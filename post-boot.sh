@@ -184,6 +184,7 @@ echo "$HOMEDIR"
 
 #install_dpdk
 cp /proj/octfpga-PG0/tools/Mellanox/dpdk.sh $HOMEDIR
+sudo -u $USER $HOMEDIR/dpdk.sh
     
 if [ $? == 0 ] ; then
     echo "XRT and shell package installation successful."
