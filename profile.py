@@ -91,9 +91,9 @@ for i in range(params.nodeCount):
     node.hardware_type = "fpga-alveo-100g"
     node.component_manager_id = "urn:publicid:IDN+cloudlab.umass.edu+authority+cm"
 
-    host_iface = node.addInterface()
-    host_iface.component_id = "eth3"
-    host_iface.addAddress(pg.IPv4Address("192.168.40." + str(i+10), "255.255.255.0"))
+    #host_iface = node.addInterface()
+    #host_iface.component_id = "eth3"
+    #host_iface.addAddress(pg.IPv4Address("192.168.40." + str(i+10), "255.255.255.0"))
 
     lan.addInterface(host_iface)
     
