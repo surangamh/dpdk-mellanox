@@ -88,8 +88,8 @@ for i in range(params.nodeCount):
     node = request.RawPC(name)
     node.disk_image = params.osImage
     # Assign to the node hosting the FPGA.
-    # node.hardware_type = "fpga-alveo-100g"
-    node.component_id = "pc160"
+    node.hardware_type = "fpga-alveo-100g"
+    #node.component_id = "pc160"
     node.component_manager_id = "urn:publicid:IDN+cloudlab.umass.edu+authority+cm"
 
     #host_iface = node.addInterface()
