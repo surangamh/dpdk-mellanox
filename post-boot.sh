@@ -162,42 +162,47 @@ PACKAGE_VERSION=`grep ^$COMB: $SCRIPT_PATH/spec.txt | awk -F':' '{print $2}' | a
 XRT_VERSION=`grep ^$COMB: $SCRIPT_PATH/spec.txt | awk -F':' '{print $2}' | awk -F';' '{print $7}' | awk -F= '{print $2}'`
 FACTORY_SHELL="xilinx_u280_GOLDEN_8"
 
-detect_cards
-install_xrt
-install_shellpkg
-verify_install
-install_mlnx_drivers
+if [ ! -f ~/boot_flag ]; then
+    touch ~/boot_flag
+    detect_cards
+    install_xrt
+    install_shellpkg
+    verify_install
+    install_mlnx_drivers
     
-if [ $? == 0 ] ; then
-    echo "XRT and shell package installation successful."
-else
-    echo "XRT and/or shell package installation failed."
-    exit 1
-fi
+    if [ $? == 0 ] ; then
+        echo "XRT and shell package installation successful."
+    else
+        echo "XRT and/or shell package installation failed."
+        exit 1
+    fi
     
-if check_requested_shell ; then
-    echo "FPGA shell verified."
-else
-    echo "FPGA shell could not be verified."
-    exit 1
-fi
-SCRIPTNAME=$0
-#
-GENIUSER=`geni-get user_urn | awk -F+ '{print $4}'`
-if [ $? -ne 0 ]; then
-echo "ERROR: could not run geni-get user_urn!"
-exit 1
-fi
-if [ $USER != $GENIUSER ]; then
-sudo -u $GENIUSER $SCRIPTNAME
-exit $?
-fi
-echo "Home directory:"
-HOMEDIR="/users/$USER"
-echo "$HOMEDIR"
+    if check_requested_shell ; then
+        echo "FPGA shell verified."
+    else
+        echo "FPGA shell could not be verified."
+        exit 1
+    fi
+    SCRIPTNAME=$0
+    #
+    GENIUSER=`geni-get user_urn | awk -F+ '{print $4}'`
+    if [ $? -ne 0 ]; then
+        echo "ERROR: could not run geni-get user_urn!"
+        exit 1
+    fi
+    if [ $USER != $GENIUSER ]; then
+        sudo -u $GENIUSER $SCRIPTNAME
+        exit $?
+    fi
+    echo "Home directory:"
+    HOMEDIR="/users/$USER"
+    echo "$HOMEDIR"
 
-#install_dpdk
-cp /proj/octfpga-PG0/tools/Mellanox/dpdk.sh $HOMEDIR
-sudo -u $USER $HOMEDIR/dpdk.sh
-echo "Done running startup script."
-exit 0
+    #install_dpdk
+    cp /proj/octfpga-PG0/tools/Mellanox/dpdk.sh $HOMEDIR
+    sudo -u $USER $HOMEDIR/dpdk.sh
+    echo "Done running startup script."
+    exit 0
+else
+    echo "Rebooted the node."
+fi    
