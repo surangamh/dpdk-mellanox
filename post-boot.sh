@@ -162,8 +162,8 @@ PACKAGE_VERSION=`grep ^$COMB: $SCRIPT_PATH/spec.txt | awk -F':' '{print $2}' | a
 XRT_VERSION=`grep ^$COMB: $SCRIPT_PATH/spec.txt | awk -F':' '{print $2}' | awk -F';' '{print $7}' | awk -F= '{print $2}'`
 FACTORY_SHELL="xilinx_u280_GOLDEN_8"
 
-if [ ! -f ~/boot_flag ]; then
-    touch ~/boot_flag
+#if [ ! -f ~/boot_flag ]; then
+#    touch ~/boot_flag
     detect_cards
     install_xrt
     install_shellpkg
@@ -203,6 +203,6 @@ if [ ! -f ~/boot_flag ]; then
     sudo -u $USER $HOMEDIR/dpdk.sh
     echo "Done running startup script."
     exit 0
-else
-    echo "Rebooted the node."
-fi    
+#else
+#    echo "Rebooted the node."
+#fi    
