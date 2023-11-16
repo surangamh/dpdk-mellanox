@@ -11,7 +11,7 @@
 install_mlnx_drivers() {
     echo "Installing Mellanox drivers"
     sudo /proj/octfpga-PG0/tools/Mellanox/MLNX_OFED_LINUX-5.8-3.0.7.0-ubuntu20.04-x86_64/mlnxofedinstall --dpdk --upstream-libs --force
-    #sudo /proj/octfpga-PG0/tools/Mellanox/mlnx-en-5.8-3.0.7.0-ubuntu20.04-x86_64/install --dpdk --upstream-libs --force
+    sudo /proj/octfpga-PG0/tools/Mellanox/mlnx-en-5.8-3.0.7.0-ubuntu20.04-x86_64/install --dpdk --upstream-libs --force
 }
 sudo apt update
 install_mlnx_drivers
